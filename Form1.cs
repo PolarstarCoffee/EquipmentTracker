@@ -25,17 +25,10 @@ namespace equipmentTracker
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
             DatabaseHelper db = new DatabaseHelper();
-            bool connected = db.TestConnection();
-            if (connected)
-            {
-                MessageBox.Show("Database connection successful!");
-            }
-            else
-            {
-                MessageBox.Show("Database connection failed.");
-            }
+            int count = db.TestConnection();
+            MessageBox.Show($"Number of equipment records: {count}");
         }
     }
 }

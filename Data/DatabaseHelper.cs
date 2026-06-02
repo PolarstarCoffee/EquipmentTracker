@@ -26,9 +26,11 @@ namespace equipmentTracker.Data
                     List<SqlCommand> commands = new List<SqlCommand>();
 
                     //query commands
-                    string query = "SELECT * FROM Equipment";
+                    string allQuery = "SELECT * FROM Equipment";
+                    string countQuery = "SELECT COUNT(*) FROM Equipment";
 
-                    commands.Add(new SqlCommand(query, connection));
+                    commands.Add(new SqlCommand(allQuery, connection));
+                    commands.Add(new SqlCommand(countQuery, connection));
 
                 }
                 catch (Exception ex)
@@ -37,7 +39,7 @@ namespace equipmentTracker.Data
                 }
             }
         }
-        public bool TestConnection()
+        public int TestConnection()
         {
             string conn;
             // SqlConnection conn;
@@ -47,13 +49,17 @@ namespace equipmentTracker.Data
                 using (SqlConnection connection = new SqlConnection(conn))
                 {
                     connection.Open();
-                    Console.WriteLine("Connection Opened");
-                    return true;
+                    string TestQuery = "SELECT COUNT(*) FROM Equipment";
+
+                    using (SqlCommand command = new SqlCommand(TestQuery, connection))
+                    {
+                        return (int)command.ExecuteScalar();
+                    }
                 }
             }
             catch
             {
-                return false;
+                return -1;
             }
         }
     }
