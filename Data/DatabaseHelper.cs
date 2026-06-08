@@ -54,7 +54,9 @@ namespace equipmentTracker.Data
                     using (SqlCommand command = new SqlCommand(TestQuery, connection))
                     {
                         return (int)command.ExecuteScalar();
+                
                     }
+                    
                 }
             }
             catch
