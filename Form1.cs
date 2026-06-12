@@ -1,4 +1,4 @@
-﻿using equipmentTracker.Data;
+﻿using DBAccess;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,9 +26,7 @@ namespace equipmentTracker
         private void button1_Click(object sender, EventArgs e)
         {
 
-            DatabaseHelper db = new DatabaseHelper();
-            int count = db.TestConnection();
-            MessageBox.Show($"Number of equipment records: {count}");
+            
         }
     }
 }
